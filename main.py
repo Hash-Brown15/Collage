@@ -3,7 +3,7 @@ import cv2
 from PIL import Image 
 
 os.chdir("/Users/jinheppell/Desktop/collage/photos")
-path = ("/Users/jinheppell/Desktop/collage/photos")
+path = "/Users/jinheppell/Desktop/collage/photos"
 
 mean_height = 0
 mean_width = 0
@@ -24,6 +24,8 @@ print(mean_height)
 
 for file in os.listdir('.'):
     if file.endswith('.jpg') or file.endswith('.jpeg') or file.endswith('.png'):
+        img = Image.open(os.path.join(path,file))
+        width,height = img.size
         imgResized = img.resize((mean_width, mean_height),Image.ANTIALIAS)
         imgResized.save(file, 'JPEG', quality = 95)
         print(img.filename.split('\\')[-1], " is resized")
